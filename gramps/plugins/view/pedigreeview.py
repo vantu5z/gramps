@@ -254,6 +254,15 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
                                   0, alloc.height-8)
             context.close_path()
 
+        def get_contrast_color(color):
+            """
+            Choose contrast white or black text color for provided background.
+            """
+            yiq = ((color[0]*299)+(color[1]*587)+(color[2]*114))/1000
+            if (yiq < 0.5):
+                return (1, 1, 1)  # 'white'
+            return (0, 0, 0)      # 'black'
+
         # pylint: disable-msg=E1101
         minw = 120
         minh = 25
@@ -343,7 +352,8 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
                                    font_color[1].green,
                                    font_color[1].blue)
         else:
-            context.set_source_rgb(0, 0, 0)
+            fg_color = get_contrast_color(self.bgcolor)
+            context.set_source_rgb(*fg_color[:3])
         PangoCairo.show_layout(context, self.textlayout)
         context.restore()
         context.get_target().flush()

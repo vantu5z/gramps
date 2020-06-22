@@ -346,14 +346,8 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
 
         # text
         context.move_to(5, 4)
-        font_color = widget.get_style_context().lookup_color('theme_fg_color')
-        if font_color[0]:
-            context.set_source_rgb(font_color[1].red,
-                                   font_color[1].green,
-                                   font_color[1].blue)
-        else:
-            fg_color = get_contrast_color(self.bgcolor)
-            context.set_source_rgb(*fg_color[:3])
+        fg_color = get_contrast_color(self.bgcolor)
+        context.set_source_rgb(*fg_color[:3])
         PangoCairo.show_layout(context, self.textlayout)
         context.restore()
         context.get_target().flush()

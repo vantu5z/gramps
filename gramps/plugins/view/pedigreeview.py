@@ -258,8 +258,8 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
             """
             Choose contrast white or black text color for provided background.
             """
-            yiq = ((color[0]*299)+(color[1]*587)+(color[2]*114))/1000
-            if (yiq < 0.5):
+            yiq = (color[0]*299)+(color[1]*587)+(color[2]*114)
+            if (yiq < 500):
                 return (1, 1, 1)  # 'white'
             return (0, 0, 0)      # 'black'
 

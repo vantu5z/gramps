@@ -577,7 +577,6 @@ def rgb_to_hex(rgb):
         rgbint = (int(rgb[0] * 255), int(rgb[1] * 255), int(rgb[2] * 255))
         return '#%02x%02x%02x' % rgbint
 
-
 def get_contrast_color(color):
     """
     Choose contrast text color (white or black) for provided background.
